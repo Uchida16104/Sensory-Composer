@@ -1,0 +1,47 @@
+---
+title: Sensory Composer — System Architecture
+---
+graph TD
+    Browser["Browser (User)"]
+    NextJS["Next.js 14\n(Vercel)"]
+    Alpine["Alpine.js + hyperscript\n+ HTMX"]
+    P5["p5.js Canvas\n(Audio Visuals)"]
+    Vue["Vue 3 Components\n(Dynamic Import)"]
+    Chart["Chart.js\n(Data Visualisations)"]
+
+    Laravel["Laravel 11 API\n(Render — PHP)"]
+    Blade["Blade Admin\nDashboard"]
+    FastAPI["FastAPI\n(Render — Python 3.11)"]
+    RustDSP["Rust DSP Service\n(Render — Rust)"]
+
+    IDB["IndexedDB\n(Browser)"]
+    PouchDB["PouchDB\n(Browser)"]
+    CouchDB["CouchDB\n(Render)"]
+    SQLJS["sql.js export\n(Browser)"]
+    PG["PostgreSQL\n(Render)"]
+
+    Jupyter["Jupyter Lab\n(Local / Render)"]
+    Voila["Voila Notebook UI\n(Render)"]
+
+    Browser --> NextJS
+    NextJS --> Alpine
+    NextJS --> P5
+    NextJS --> Vue
+    NextJS --> Chart
+    NextJS -->|REST API| Laravel
+    Laravel -->|HTTP| FastAPI
+    Laravel -->|HTTP| RustDSP
+    Laravel --> Blade
+    Laravel --> PG
+    FastAPI -->|analysis results| Laravel
+    RustDSP -->|FFT data| Laravel
+
+    Browser --> IDB
+    Browser --> PouchDB
+    PouchDB -->|sync| CouchDB
+    CouchDB --> Laravel
+    Browser --> SQLJS
+
+    Jupyter -->|export snippets| NextJS
+    Jupyter --> Voila
+    Voila -->|iframe embed| NextJS

@@ -1,0 +1,64 @@
+services:
+  # ── Laravel API ─────────────────────────────────────────────────────────────
+  - type: web
+    name: sensory-composer-laravel
+    runtime: php
+    region: oregon
+    plan: free
+    rootDir: backend
+    buildCommand: bash build.sh
+    startCommand: php artisan serve --host=0.0.0.0 --port=$PORT
+    envVars:
+      - key: APP_ENV
+        value: production
+      - key: APP_DEBUG
+        value: "false"
+      - key: APP_KEY
+        generateValue: true
+      - key: DB_CONNECTION
+        value: pgsql
+      - key: DB_HOST
+        sync: false
+      - key: DB_PORT
+        value: "5432"
+      - key: DB_DATABASE
+        value: postgres
+      - key: DB_USERNAME
+        sync: false
+      - key: DB_PASSWORD
+        sync: false
+      - key: DB_SSLMODE
+        value: require
+      - key: FASTAPI_URL
+        sync: false
+      - key: RUST_DSP_URL
+        sync: false
+      - key: FRONTEND_URL
+        sync: false
+      - key: CACHE_STORE
+        value: database
+      - key: SESSION_DRIVER
+        value: database
+
+  # ── FastAPI (Python) ─────────────────────────────────────────────────────────
+  - type: web
+    name: sensory-composer-fastapi
+    runtime: python
+    region: oregon
+    plan: free
+    rootDir: backend/services/fastapi
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
+
+  # ── Rust DSP ──────────────────────────────────────────────────────────────────
+  - type: web
+    name: sensory-composer-rust-dsp
+    runtime: rust
+    region: oregon
+    plan: free
+    rootDir: backend/services/rust-dsp
+    buildCommand: cargo build --release
+    startCommand: ./target/release/rust-dsp
+    envVars:
+      - key: PORT
+        value: "10000"

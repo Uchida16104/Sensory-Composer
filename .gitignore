@@ -1,0 +1,13 @@
+node_modules/
+.next/
+.env
+.env.local
+vendor/
+__pycache__/
+*.pyc
+target/
+*.log
+.DS_Store
+storage/framework/
+storage/logs/*.log
+bootstrap/cache/*.php

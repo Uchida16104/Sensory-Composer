@@ -1,0 +1,21 @@
+---
+title: Sensory Composer — Live Performance Lifecycle
+---
+flowchart TD
+    A([User Opens Audio Studio]) --> B[Browser requests\nmicrophone permission]
+    B -->|Granted| C[Web Audio API\ncreates AnalyserNode]
+    B -->|Denied| ERR([Show permission\nerror UI])
+    C --> D[p5.js sketch reads\nFFT frequency data\nevery animation frame]
+    D --> E[Canvas renders\nreal-time waveform\nand spectrum bars]
+    E --> F{User clicks\nCapture?}
+    F -->|No| D
+    F -->|Yes| G[Audio snapshot\nbase64 encoded]
+    G --> H[Poetry editor\ncontent collected]
+    H --> I[Visual canvas\nexported as PNG]
+    I --> J[Score package assembled:\naudio + visuals + poem]
+    J --> K[Save to IndexedDB\n locally]
+    K --> L[PouchDB syncs\npackage to CouchDB]
+    L --> M[Laravel API\nreceives sync event]
+    M --> N[FastAPI analyses\naudio features]
+    N --> O[Results stored\nin PostgreSQL]
+    O --> P([Score visible in\nAdmin Dashboard])
