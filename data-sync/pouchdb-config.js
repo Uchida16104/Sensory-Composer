@@ -1,4 +1,4 @@
-const COUCH_URL = process.env.COUCH_URL || "http://localhost:5984";
+const COUCH_URL = process.env.COUCH_URL || "http://sensory-composer.onrender.com:5984";
 const DB_NAME = "sensory-composer-scores";
 
 const remoteURL = `${COUCH_URL}/${DB_NAME}`;
