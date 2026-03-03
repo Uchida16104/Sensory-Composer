@@ -8,7 +8,7 @@ const ScoreExporter = dynamic(() => import("@/components/ScoreExporter"), {
 });
 
 export default function ScoreExportPage() {
-  const [audioBlob, setAudioBlob] = useState<Blob | null>(null);
+  const [audioBlob, setAudioBlob] = useState<File | null>(null);
   const [visualDataUrl, setVisualDataUrl] = useState<string | null>(null);
   const [poem, setPoem] = useState<string>("");
   const canvasRef = useRef<HTMLCanvasElement>(null);
