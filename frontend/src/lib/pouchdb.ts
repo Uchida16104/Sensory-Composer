@@ -1,7 +1,7 @@
 import { ScorePackage } from "./indexeddb";
 
 const COUCH_URL =
-  process.env.NEXT_PUBLIC_COUCH_URL ?? "http://localhost:5984";
+  process.env.NEXT_PUBLIC_COUCH_URL ?? "http://sensory-composer.onrender.com:5984";
 const DB_NAME = "sensory-composer-scores";
 
 interface PouchDocument extends ScorePackage {
