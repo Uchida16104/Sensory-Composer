@@ -1,14 +1,38 @@
 <?php
 
 return [
-    'fastapi' => [
-        'url' => env('FASTAPI_URL', 'http://localhost:8001'),
+
+    /*
+    |--------------------------------------------------------------------------
+    | Third Party Services
+    |--------------------------------------------------------------------------
+    |
+    | This file is for storing the credentials for third party services such
+    | as Mailgun, Postmark, AWS and more. This file provides the de facto
+    | location for this type of information, allowing packages to have
+    | a conventional file to locate the various service credentials.
+    |
+    */
+
+    'postmark' => [
+        'key' => env('POSTMARK_API_KEY'),
     ],
-    'rust_dsp' => [
-        'url' => env('RUST_DSP_URL', 'http://localhost:8002'),
+
+    'resend' => [
+        'key' => env('RESEND_API_KEY'),
     ],
-    'couchdb' => [
-        'url' => env('COUCHDB_URL', 'http://localhost:5984'),
-        'db'  => env('COUCHDB_DB', 'sensory-composer-scores'),
+
+    'ses' => [
+        'key' => env('AWS_ACCESS_KEY_ID'),
+        'secret' => env('AWS_SECRET_ACCESS_KEY'),
+        'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
+
+    'slack' => [
+        'notifications' => [
+            'bot_user_oauth_token' => env('SLACK_BOT_USER_OAUTH_TOKEN'),
+            'channel' => env('SLACK_BOT_USER_DEFAULT_CHANNEL'),
+        ],
+    ],
+
 ];
