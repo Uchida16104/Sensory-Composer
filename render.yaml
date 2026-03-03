@@ -2,7 +2,7 @@ services:
   # ── Laravel API ─────────────────────────────────────────────────────────────
   - type: web
     name: sensory-composer-laravel
-    env: php
+    env: docker
     region: oregon
     plan: free
     rootDir: backend
