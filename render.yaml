@@ -43,7 +43,7 @@ services:
   # ── FastAPI (Python) ─────────────────────────────────────────────────────────
   - type: web
     name: sensory-composer-fastapi
-    runtime: python
+    env: python
     region: oregon
     plan: free
     rootDir: backend/services/fastapi
@@ -53,7 +53,7 @@ services:
   # ── Rust DSP ──────────────────────────────────────────────────────────────────
   - type: web
     name: sensory-composer-rust-dsp
-    runtime: rust
+    env: rust
     region: oregon
     plan: free
     rootDir: backend/services/rust-dsp
