@@ -1,7 +1,7 @@
 services:
   # ── Laravel API ─────────────────────────────────────────────────────────────
   - type: web
-    name: sensory-composer-laravel
+    env: sensory-composer-laravel
     runtime: php
     region: oregon
     plan: free
